@@ -9,6 +9,7 @@ class HeaderTitle extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Welcome Nizam 👋',

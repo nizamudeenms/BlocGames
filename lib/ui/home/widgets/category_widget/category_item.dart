@@ -35,7 +35,7 @@ class CategoryItem extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: state ? Colors.deepOrangeAccent : Colors.amberAccent,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.gamepad_outlined,
                 ),
               ),
@@ -44,7 +44,7 @@ class CategoryItem extends StatelessWidget {
                 width: 60,
                 child: Text(
                   category.name ?? '',
-                  style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.bold, color: Colors.black87),
+                  style: const TextStyle(fontSize: 10.0, fontWeight: FontWeight.bold, color: Colors.black87),
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

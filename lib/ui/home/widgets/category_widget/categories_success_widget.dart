@@ -13,37 +13,41 @@ class CategoriesSuccessWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CategoryBloc, CategoryState>(
       builder: (context, state) {
-        return SizedBox(
-          height: MediaQuery.of(context).size.height * .15,
-          child: ListView.separated(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return CategoryItem(
-                key: ValueKey('${state.categories[index].name}$index'),
-                category: state.categories[index],
-                callback: (Genre categorySelected) {
-                  // context.read<GamesByCategoryBloc>().add(
-                  //   GetGamesByCategory(
-                  //     idSelected: categorySelected.id,
-                  //     categoryName: categorySelected.name ?? '',
-                  //   ),
-                  // );
-                  context.read<CategoryBloc>().add(
-                        SelectCategory(
-                          idSelected: categorySelected.id,
-                        ),
-                      );
-                },
+        return state.status.isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : SizedBox(
+                height: MediaQuery.of(context).size.height * .15,
+                child: ListView.separated(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return CategoryItem(
+                      key: ValueKey('${state.categories[index].name}$index'),
+                      category: state.categories[index],
+                      callback: (Genre categorySelected) {
+                        // context.read<GamesByCategoryBloc>().add(
+                        //   GetGamesByCategory(
+                        //     idSelected: categorySelected.id,
+                        //     categoryName: categorySelected.name ?? '',
+                        //   ),
+                        // );
+                        context.read<CategoryBloc>().add(
+                              SelectCategory(
+                                idSelected: categorySelected.id,
+                              ),
+                            );
+                      },
+                    );
+                  },
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (_, __) => const SizedBox(
+                    width: 16.0,
+                  ),
+                  itemCount: state.categories.length,
+                ),
               );
-            },
-            scrollDirection: Axis.horizontal,
-            separatorBuilder: (_, __) => const SizedBox(
-              width: 16.0,
-            ),
-            itemCount: state.categories.length,
-          ),
-        );
       },
     );
   }
