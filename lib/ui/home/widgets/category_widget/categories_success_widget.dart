@@ -14,9 +14,7 @@ class CategoriesSuccessWidget extends StatelessWidget {
     return BlocBuilder<CategoryBloc, CategoryState>(
       builder: (context, state) {
         return state.status.isLoading
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
+            ? const Center(child: CircularProgressIndicator())
             : SizedBox(
                 height: MediaQuery.of(context).size.height * .15,
                 child: ListView.separated(
