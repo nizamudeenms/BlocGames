@@ -3,6 +3,7 @@ import 'package:bloc_games/ui/home/widgets/category_widget/bloc/category_bloc.da
 import 'package:bloc_games/ui/home/widgets/category_widget/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CategoriesSuccessWidget extends StatelessWidget {
   const CategoriesSuccessWidget({
@@ -14,7 +15,7 @@ class CategoriesSuccessWidget extends StatelessWidget {
     return BlocBuilder<CategoryBloc, CategoryState>(
       builder: (context, state) {
         return state.status.isLoading
-            ? const Center(child: CircularProgressIndicator())
+            ? ShimmerCircle(context)
             : SizedBox(
                 height: MediaQuery.of(context).size.height * .15,
                 child: ListView.separated(
@@ -47,6 +48,35 @@ class CategoriesSuccessWidget extends StatelessWidget {
                 ),
               );
       },
+    );
+  }
+
+  Widget ShimmerCircle(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * .15,
+      child: ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) => Column(
+          children: [
+            Shimmer.fromColors(
+              baseColor: Colors.grey,
+              highlightColor: Colors.white,
+              child: Container(
+                height: 60.0, // Matching the height of the selected CategoryItem
+                width: 60.0,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+          ],
+        ),
+        separatorBuilder: (_, __) => const SizedBox(width: 16.0),
+        itemCount: 5, // Display 3 shimmer items as placeholders
+      ),
     );
   }
 }
