@@ -2,6 +2,7 @@ import 'package:bloc_games/repository/game_repository.dart';
 import 'package:bloc_games/repository/service/game_service.dart';
 import 'package:bloc_games/ui/home/widgets/all_games_widget/bloc/all_games_bloc.dart';
 import 'package:bloc_games/ui/home/widgets/category_widget/bloc/category_bloc.dart';
+import 'package:bloc_games/ui/home/widgets/games_by_category/bloc/games_by_category_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,11 +29,11 @@ class HomePage extends StatelessWidget {
                 gameRepository: context.read<GameRepository>(),
               )..add(GetCategories()),
             ),
-            // BlocProvider<GamesByCategoryBloc>(
-            //   create: (context) => GamesByCategoryBloc(
-            //     gameRepository: context.read<GameRepository>(),
-            //   ),
-            // ),
+            BlocProvider<GamesByCategoryBloc>(
+              create: (context) => GamesByCategoryBloc(
+                gameRepository: context.read<GameRepository>(),
+              ),
+            ),
           ],
           child: HomeLayout(),
         ),

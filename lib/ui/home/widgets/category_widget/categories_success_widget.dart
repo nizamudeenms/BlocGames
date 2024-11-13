@@ -1,6 +1,7 @@
 import 'package:bloc_games/repository/models/genre.dart';
 import 'package:bloc_games/ui/home/widgets/category_widget/bloc/category_bloc.dart';
 import 'package:bloc_games/ui/home/widgets/category_widget/category_item.dart';
+import 'package:bloc_games/ui/home/widgets/games_by_category/bloc/games_by_category_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
@@ -26,12 +27,12 @@ class CategoriesSuccessWidget extends StatelessWidget {
                       key: ValueKey('${state.categories[index].name}$index'),
                       category: state.categories[index],
                       callback: (Genre categorySelected) {
-                        // context.read<GamesByCategoryBloc>().add(
-                        //   GetGamesByCategory(
-                        //     idSelected: categorySelected.id,
-                        //     categoryName: categorySelected.name ?? '',
-                        //   ),
-                        // );
+                        context.read<GamesByCategoryBloc>().add(
+                          GetGamesByCategory(
+                            idSelected: categorySelected.id,
+                            categoryName: categorySelected.name ?? '',
+                          ),
+                        );
                         context.read<CategoryBloc>().add(
                               SelectCategory(
                                 idSelected: categorySelected.id,

@@ -19,7 +19,7 @@ class AllGamesBloc extends Bloc<AllGamesEvent, AllGamesState> {
   void _mapGetGamesEventToState(
       GetGames event, Emitter<AllGamesState> emit) async {
     try {
-      print("in all games bloc");
+
       emit(state.copyWith(status: AllGamesStatus.loading));
       final games = await gameRepository.getGames();
       emit(

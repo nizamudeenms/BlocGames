@@ -21,7 +21,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     emit(state.copyWith(status: CategoryStatus.loading));
     try {
       final genres = await gameRepository.getGenres();
-      await Future.delayed(const Duration(seconds: 5));
+      // await Future.delayed(const Duration(seconds: 5));
       emit(
         state.copyWith(
           status: CategoryStatus.success,
