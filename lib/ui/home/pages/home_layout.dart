@@ -1,3 +1,4 @@
+import 'package:bloc_games/ui/home/widgets/all_games_widget/all_games_widget.dart';
 import 'package:bloc_games/ui/home/widgets/category_widget/categories_widget.dart';
 import 'package:bloc_games/ui/home/widgets/header_title/header_title.dart';
 import 'package:bloc_games/ui/widgets/container_body.dart';
@@ -21,7 +22,7 @@ class HomeLayout extends StatelessWidget {
             children: [
               CategoriesWidget(),
               // GamesByCategoryWidget(),
-              // AllGamesWidget(title: 'All games'),
+              AllGamesWidget(title: 'All games'),
             ],
           )
         ],
